@@ -1,0 +1,81 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#container{
+    width: inherit;
+    margin: auto;
+    background-color: rgb(230, 166, 166);
+}
+
+#register_page{
+    display: flex;
+    justify-content: center;
+    padding: 300px;
+}
+
+.register_box{
+    width: 500px;
+    height: 775px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 3%;
+    box-shadow: 4px 4px 4px rgb(68, 68, 68);
+}
+
+.register_box > h3{
+    margin-left: 75px;
+    font-family: fantasy
+}
+
+.register_box > form{
+    margin: 15px 0 0 75px;
+}
+
+.register_box > a{
+margin-left: 120px;}
+
+.register > input{
+    width: 350px;
+}
+
+.register{
+    margin-bottom: 5px;
+}
+
+#register-link{
+    color: blue;
+    text-decoration: underline;
+}
+
+.register_tag{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.email,
+.password{
+    height: 30px;
+    box-shadow: 2px rgb(231, 231, 231);
+}
+
+p{
+    margin-bottom: 0;
+}
+
+.btn{
+    background-color: rgb(219, 108, 108);
+    width: 350px;
+    font-family: fantasy;
+    font-size: large;
+    color: white;
+}
+
+.flash{
+    width: 500px;
+    height: 300px;
+    text-align: center;
+    font-size: 16pt;
+    font-family: fantasy;
+}
