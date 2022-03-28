@@ -15,11 +15,12 @@ $("#submit-button").on("click", function (event){
 
     $.ajax({
         method:"GET",
-        url: "https://api.pokemontcg.io/v1/cards/?name=" + pokemon
+        url: "https://api.pokemontcg.io/v2/cards?q=name:" + pokemon
     }).then(function(response){
-        for (var i = 0; i < response.cards.length; i++){
+        console.log(response);
+        for (var i = 0; i < response.data.length; i++){
             var pokemonCard = $("<img class='pkmn-card' onmouseover='addShadow(this)' onmouseleave='removeShadow(this)'>");
-            pokemonCard.attr("src", response.cards[i].imageUrlHiRes);
+            pokemonCard.attr("src", response.data[i].images.large);
             $("#card-container").append(pokemonCard);
         }
     });

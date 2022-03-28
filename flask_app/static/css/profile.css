@@ -108,8 +108,13 @@ a:active {
 }
 
 .pkmn-card{
-    width: 200px;
+    width: 215px;
     height: 300px;
     margin-bottom: 30px;
     cursor: pointer;
+}
+
+.col-auto{
+    display: flex;
+    margin-top: 5px;
 }
