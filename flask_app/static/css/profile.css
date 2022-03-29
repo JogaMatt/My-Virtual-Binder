@@ -6,7 +6,6 @@
 #container{
     width: inherit;
     margin: auto;
-    background-color: rgb(231, 231, 231);
 }
 
 #navbar{
@@ -110,11 +109,21 @@ a:active {
 .pkmn-card{
     width: 215px;
     height: 300px;
-    margin-bottom: 30px;
     cursor: pointer;
 }
 
 .col-auto{
     display: flex;
     margin-top: 5px;
+}
+
+.anchor{
+    width: 215px;
+    height: 300px;
+    margin: 15px;
+}
+
+#card-pic{
+    width: 430px;
+    height: 600px;
 }

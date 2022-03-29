@@ -10,8 +10,8 @@ $("#submit-button").on("click", function (event){
     $("#card-container").empty();
     event.preventDefault();
     var pokemon = $("#search_bar")
-    .val()
-    .trim();
+    .val();
+    console.log(pokemon)
 
     $.ajax({
         method:"GET",
@@ -19,9 +19,13 @@ $("#submit-button").on("click", function (event){
     }).then(function(response){
         console.log(response);
         for (var i = 0; i < response.data.length; i++){
+            var link = $("<a>");
+            link.attr("href", "/card/" + response.data[i].id);
+            link.attr("class", "anchor")
             var pokemonCard = $("<img class='pkmn-card' onmouseover='addShadow(this)' onmouseleave='removeShadow(this)'>");
             pokemonCard.attr("src", response.data[i].images.large);
-            $("#card-container").append(pokemonCard);
+            cardLink = link.append(pokemonCard)
+            $("#card-container").append(cardLink);
         }
     });
 });
