@@ -149,3 +149,9 @@ a:active {
     margin: auto;
     margin-right: 0;
 }
+
+#my_cards{
+    width: 311px;
+    height: 432px;
+    margin-right: 30px;
+}

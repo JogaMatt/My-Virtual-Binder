@@ -21,7 +21,6 @@
                     {% if 'user_id' not in session %}
                         <a href="/profile" class="account">Account</a>
                         {% else %}
-                        <a href="/search"><img id="search_ball" src="{{ url_for('static', filename='img/search_ball.gif') }}"></a>
                         <p><a href="/profile" id="profile-link">{{session['name']}}</a></p>
                         <a href="/logout" class="logout">Log Out</a>
                     {% endif %}
@@ -32,17 +31,16 @@
             <a href="/create_binder">Create a Binder</a>
             <a href="/public_trade">Public Trade</a>
         </div>
-        <div id="profile-body">
-            {% for binder in binder %}
-                {% if binder.trade == "Yes" %}
-                    <a href="/show_binder/{{binder.id}}"><img src="{{ url_for('static', filename='img/pokemon_binder.png') }}" alt=""></a>
-                    {{binder.name}}
-                    {% else %}
-                    <a href="/show_binder/{{binder.id}}"><img src="{{ url_for('static', filename='img/random.png') }}" alt=""></a>
-                    {{binder.name}}
-                {% endif %}
-            {% endfor %}
-            <div class="row" id="profile-container">
+        <div id="search-body">
+            <form action="/search" method="post" id="final_search">
+                <div class="form-row align-items-center">
+                    <div class="col-auto">
+                        <input type="text" name="search" class="form-control mb-2" id="search_bar" placeholder="  Search...">
+                        <button type="submit" class="btn btn-primary mb-2" id="submit-button">Search</button>
+                    </div>
+                </div>
+            </form>
+            <div class="row" id="card-container">
                 
             </div>
         </div>

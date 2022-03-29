@@ -27,8 +27,8 @@
     margin-left: 50px;
 }
 
-a > img{
-    width: 250px;
+#logo{
+    width: 200px;
 }
 
 #search_bar{
@@ -75,6 +75,10 @@ a:active {
     border-radius: 5px;
     margin-left: 15px;
     margin-top: -10px;
+}
+
+#search_ball{
+    width: 30px;
 }
 
 .links > p{
@@ -214,4 +218,5 @@ margin-left: 120px;}
 #profile-link{
     color: black;
     text-decoration: underline;
+    margin-left: 15px;
 }

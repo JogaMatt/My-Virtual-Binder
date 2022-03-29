@@ -134,8 +134,9 @@ a:active {
 }
 
 #card-pic{
-    width: 430px;
-    height: 600px;
+    width: 311px;
+    height: 432px;
+    margin-right: 30px;
 }
 
 #profile-link{
@@ -144,8 +145,22 @@ a:active {
     margin-left: 15px;
 }
 
-#card-container{
-    width: inhert;
+#card_body{
+    margin-top: 30px;
+}
+
+.card_info{
+    width: 1400px;
     margin: auto;
-    margin-right: 0;
+    display: flex;
+}
+
+#set_logo{
+    width: 150px;
+    margin-bottom: 15px;
+}
+
+.card_name,
+.card_number{
+    font-family: Bahnschrift SemiBold;
 }
