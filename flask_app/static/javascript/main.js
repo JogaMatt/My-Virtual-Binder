@@ -6,6 +6,14 @@ function removeShadow(element){
     element.classList.remove("shadow");
 }
 
+function increaseSize(element){
+    element.classList.add("bigImg")
+}
+
+function decreaseSize(element){
+    element.classList.remove("bigImg")
+}
+
 $("#submit-button").on("click", function (event){
     $("#card-container").empty();
     event.preventDefault();
@@ -15,14 +23,14 @@ $("#submit-button").on("click", function (event){
 
     $.ajax({
         method:"GET",
-        url: "https://api.pokemontcg.io/v2/cards?q=name:" + pokemon
+        url: "https://api.pokemontcg.io/v2/cards?q=name:" + pokemon.replace(" ", "*")
     }).then(function(response){
         console.log(response);
         for (var i = 0; i < response.data.length; i++){
             var link = $("<a>");
             link.attr("href", "/card/" + response.data[i].id);
             link.attr("class", "anchor")
-            var pokemonCard = $("<img class='pkmn-card' onmouseover='addShadow(this)' onmouseleave='removeShadow(this)'>");
+            var pokemonCard = $("<img class='pkmn-card' onmouseover='increaseSize(this)' onmouseleave='decreaseSize(this)'>");
             pokemonCard.attr("src", response.data[i].images.large);
             cardLink = link.append(pokemonCard)
             $("#card-container").append(cardLink);

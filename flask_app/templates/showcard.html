@@ -31,33 +31,119 @@
         <div id="web_nav">
             <a href="/create_binder">Create a Binder</a>
             <a href="/public_trade">Public Trade</a>
+            <a href="/calculator">Card Calculator</a>
         </div>
-        <div id="card_body">
-            <div class="card_info">
-                <img id="card-pic" src="{{data['data']['images']['large']}}" alt="{{data['data']['name']}}">
-                <div class="card_origin">
-                    <h1 class="card_name" >{{data['data']['name']}}</h1>
-                    <img id="set_logo" src="{{data['data']['set']['images']['logo']}}" alt="{{data['data']['set']['name']}}">
-                    <h5><strong>Card Number:</strong> {{data['data']['number']}} / {{data['data']['set'].printedTotal}} </h5>
-                    <h5><strong>Card Type/HP/Stage:</strong> {{data['data']['types'].0}} / {{data['data'].hp}} / {{data['data']['subtypes'].0}}</h5>
-                </div>
-                <form action="/save_card" method="post">
-                    <input type="hidden" name="api_id" id="" value="{{data['data']['images']['large']}}">
-                    <input type="hidden" name="name" value="{{data['data']['name']}}">
-                    <select name="binder_id" id="">
-                        {% for binder in user.binders %}
-                            <option value="{{binder.id}}">{{binder.name}}</option>
-                        {% endfor %}
-                    </select>
-                    <button type="submit">Save Card</button>
-                </form>
-            </div>
-            
-        </div>
-    
-    
-    
-    </div>
+        <div id="main_body">
+            <div id="card_body">
+                <div class="card_info">
+                    <img id="card-pic" src="{{data['data']['images']['large']}}" alt="{{data['data']['name']}}">
+                    <div class="card_origin">
+                        <h1 class="card_name" >{{data['data']['name']}}</h1>
+                        <img id="set_logo" src="{{data['data']['set']['images']['logo']}}" alt="{{data['data']['set']['name']}}">
+                        <h5><strong>Card Number:</strong> {{data['data']['number']}} / {{data['data']['set'].printedTotal}} </h5>
 
+                        <!-- POKEMON -->
+                        {% if data['data']['supertype'] == "Pokémon" %}
+                            <h5><strong>Card Type / HP / Stage:</strong> {{data['data']['types'].0}} / {{data['data']['hp']}} / {{data['data']['subtypes'].0}} </h5>
+                            {% if (data['data']['attacks'])|length == 1 %}
+                                <h5><strong>Attack 1: {{data['data']['attacks'].0.name}}</strong>
+                                <br>
+                                {{data['data']['attacks'].0.text}}</h5>
+                                
+                                {% elif (data['data']['attacks'])|length == 2 %}
+                                    <h5><strong>Attack 1: {{data['data']['attacks'].0.name}}</strong>
+                                    <br>
+                                    {{data['data']['attacks'].0.text}}</h5>
+                                    <h5><strong>Attack 2: {{data['data']['attacks'].1.name}}</strong>
+                                    <br>
+                                    {{data['data']['attacks'].1.text}}</h5>
+                                {% elif (data['data']['attacks'])|length == 3 %}
+                                    <h5><strong>Attack 1: {{data['data']['attacks'].0.name}}</strong>
+                                    <br>
+                                    {{data['data']['attacks'].0.text}}</h5>
+                                    <h5><strong>Attack 2: {{data['data']['attacks'].1.name}}</strong>
+                                    <br>
+                                    {{data['data']['attacks'].1.text}}</h5>
+                                    <h5><strong>Attack 3: {{data['data']['attacks'].2.name}}</strong>
+                                    <br>
+                                    {{data['data']['attacks'].2.text}}</h5>
+                            {% endif %}
+
+                            <!-- TRAINER -->
+                            {% elif data['data']['supertype'] == "Trainer" %}
+                                <h5><strong>Card Type: </strong> {{data['data']['subtypes'].0}}</h5>
+                                <h5><strong>Card Text: </strong> {{data['data']['rules'].0}}
+                                {% if (data['data']['rules'])|length == 2 %}
+                                    <br>
+                                    <br><em>{{data['data']['rules'].1}}</em>
+                                    {% elif (data['data']['rules'])|length == 3 %}
+                                    <br>
+                                    <br>{{data['data']['rules'].1}}
+                                    <br>
+                                    <br><em>{{data['data']['rules'].2}}</em>
+                                {% endif %}</h5>
+
+                            <!-- ENERGY -->
+                            {% elif data['data']['supertype'] == "Energy" %}
+                                
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        <form action="/save_card" method="post">
+            <input type="hidden" name="card_id" id="" value="{{data['data']['id']}}">
+            <input type="hidden" name="api_id" id="" value="{{data['data']['images']['large']}}">
+            <input type="hidden" name="name" value="{{data['data']['name']}}">
+            <div class="selects">
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="binder_id">
+                    <option value="0">--Select a Binder--</option>
+                    {% for binder in users.binders %}
+                        <option value="{{binder.id}}">{{binder.name}}</option>
+                    {% endfor %}
+                </select>
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="card_condition">
+                    <option value="0">--Select Condition--</option>
+                    <option value="Near Mint/Mint">Near Mint/Mint</option>
+                    <option value="Lightly Played">Lightly Played</option>
+                    <option value="Moderately Played">Moderately Played</option>
+                    <option value="Heavily Played">Heavily Played</option>
+                    <option value="Damaged">Damaged</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">Save Card</button>
+        </form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+            <h4>Users who are trading this card:</h4>
+            <div id="bottom_card">
+                {% for users in users_with_cards %}
+                    {% if users.id != session['user_id'] %}
+                        <div class="card"  onmouseover="increaseSize(this)" onmouseleave="decreaseSize(this)">
+                            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                                <img src="{{data['data']['images']['large']}}" class="img-fluid"/>
+                                <a href="">
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-title"><strong>{{users.username}}</strong></p>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="/show_binder" class="btn btn-primary">Button</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='javascript/main.js') }}"></script>
 </body>
 </html>
+
+
+

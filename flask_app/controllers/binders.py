@@ -6,6 +6,8 @@ from pprint import pprint
 
 @app.route('/binder_creation')
 def binder_creation():
+    if 'user_id' not in session:
+        return redirect('/login')
     return render_template('binder.html')
 
 @app.route('/submit_binder', methods=['POST'])
@@ -22,6 +24,7 @@ def show_binder(id):
         'binder_id': id
     }
 
-    cards = Card.get_my_cards(data)
+    session['binder_id'] = id
 
+    cards = Card.get_my_cards(data)
     return render_template('mybinder.html', cards = cards)

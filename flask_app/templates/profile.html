@@ -31,20 +31,28 @@
         <div id="web_nav">
             <a href="/create_binder">Create a Binder</a>
             <a href="/public_trade">Public Trade</a>
+            <a href="/calculator">Card Calculator</a>
         </div>
         <div id="profile-body">
-            {% for binder in binder %}
-                {% if binder.trade == "Yes" %}
-                    <a href="/show_binder/{{binder.id}}"><img src="{{ url_for('static', filename='img/pokemon_binder.png') }}" alt=""></a>
-                    {{binder.name}}
-                    {% else %}
-                    <a href="/show_binder/{{binder.id}}"><img src="{{ url_for('static', filename='img/random.png') }}" alt=""></a>
-                    {{binder.name}}
+            {% for binder in binders %}
+                {% if session['user_id'] == binder.user_id and binder.trade == "Yes" %}
+                    <div id="parent-trade">
+                        <div class="trade">
+                            <a href="/show_binder/{{binder.id}}"><img src="{{ url_for('static', filename='img/trade_binder.png') }}" alt=""></a>
+                        </div>
+                    </div>
                 {% endif %}
             {% endfor %}
-            <div class="row" id="profile-container">
-                
-            </div>
+                    <br>
+            {% for binder in binders %}
+                {% if session['user_id'] == binder.user_id and binder.trade == "No" %}
+                    <div id="parent-set">
+                        <div class="set">
+                            <a href="/show_binder/{{binder.id}}"><img src="{{ url_for('static', filename='img/tracking_binder.png') }}" alt=""></a>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

@@ -154,3 +154,11 @@ a:active {
 #parent-set{
     display: inline-block;
 }
+
+.bigImg{
+    width: 226px;
+    height: 315px;
+    border: 5px solid cyan;
+    border-radius: 15px;
+    box-shadow: 10px 10px 10px black;
+}

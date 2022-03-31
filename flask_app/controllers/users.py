@@ -15,9 +15,9 @@ def profile():
     if 'user_id' not in session:
         return redirect('/login')
 
-    binder = Binder.get_all_binders()
+    binders = Binder.get_all_binders()
 
-    return render_template('profile.html', binder = binder)
+    return render_template('profile.html', binders = binders)
 
 @app.route('/login')
 def login():
@@ -32,6 +32,7 @@ def logout():
 
 @app.route('/account', methods=['POST'])
 def account():
+    
     data = { 
         "username" : request.form["username"]
     }
