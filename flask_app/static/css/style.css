@@ -32,10 +32,10 @@
 }
 
 #search_bar{
-    width: 1810px;
+    width: inherit;
     height: 35px;
     border-radius: 5px;
-    border: 4px rgb(165, 165, 165);
+    margin-right: 15px;
 }
 
 .registration{

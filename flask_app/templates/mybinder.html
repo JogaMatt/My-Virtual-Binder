@@ -37,6 +37,7 @@
             {% for card in cards %}
                 <div id="single-card">
                     <a href="/card/{{card.card_id}}"><img class="my_cards" src="{{card.api_id}}" name="{{card.name}}" onmouseover="increaseSize(this)" onmouseleave="(decreaseSize(this))"></a>
+                    <h6>*{{card.card_condition}}*</h6>
                     <div class="delete-button">
                         <a href="/delete/{{card.id}}"><button id="delete-btn" type="button" class="btn btn-outline-danger btn-rounded" data-mdb-ripple-color="dark">Remove Card</button></a>
                     </div>

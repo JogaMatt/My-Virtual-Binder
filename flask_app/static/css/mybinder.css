@@ -168,8 +168,13 @@ button > p{
 
 #single-card{
     width: 215px;
-    height: 300px;
+    height: 325px;
     margin: 0 35px 75px 0;
+}
+
+#single-card > h6{
+    font-family: fantasy;
+    text-align: center;
 }
 
 .bigImg{

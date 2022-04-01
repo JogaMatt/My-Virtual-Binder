@@ -30,7 +30,7 @@ class Card:
     def get_one_with_users(cls, data):
         query  = "SELECT * FROM cards LEFT JOIN binders ON cards.binder_id = binders.id LEFT JOIN users ON binders.user_id = users.id WHERE cards.card_id = %(id)s and binders.trade = 'Yes';"
         results = connectToMySQL(DATABASE).query_db(query, data)
-        # pprint(results)
+        pprint(results)
         users = []
         for result in results:
             cardHolder_data = {
@@ -77,5 +77,8 @@ class Card:
             is_valid = False
         if(card['card_condition'] == "0"):
             flash("Must select a card condition!")
+            is_valid = False
+        if(card['quantity'] == ""):
+            flash("Must select a quantity!")
             is_valid = False
         return is_valid

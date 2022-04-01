@@ -109,6 +109,14 @@
                     <option value="Heavily Played">Heavily Played</option>
                     <option value="Damaged">Damaged</option>
                 </select>
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="quantity">
+                    <option value="0">--Select Quantity--</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
             </div>
             <button type="submit" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">Save Card</button>
         </form>
@@ -121,7 +129,7 @@
         {% endwith %}
             <h4>Users who are trading this card:</h4>
             <div id="bottom_card">
-                {% for users in users_with_cards %}
+                {% for users in users_with_cards%}
                     {% if users.id != session['user_id'] %}
                         <div class="card"  onmouseover="increaseSize(this)" onmouseleave="decreaseSize(this)">
                             <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">

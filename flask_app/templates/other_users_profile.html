@@ -46,7 +46,7 @@
                 <h1 id="title">Trade Binders</h1>
                 <div id="trade-body">
                     {% for binder in binders %}
-                        {% if session['user_id'] != binder.user_id and binder.trade == "Yes" %}
+                        {% if session['user_id'] != binder.user_id and users.id == binder.user_id and binder.trade == "Yes" %}
                             <div id="parent-trade">
                                 <div class="trade">
                                     <a href="/show_binder/{{binder.id}}"><img id="body-binders" src="{{ url_for('static', filename='img/trade_binder.png') }}" alt=""></a>
@@ -60,7 +60,7 @@
                 <h1 id="title">Set Binders</h1>
                 <div id="set-body">
                     {% for binder in binders %}
-                        {% if session['user_id'] != binder.user_id and binder.trade == "No" %}
+                        {% if session['user_id'] != binder.user_id and users.id == binder.user_id and binder.trade == "No" %}
                             <div id="parent-set">
                                 <div class="set">
                                     <a href="/show_binder/{{binder.id}}"><img id="body-binders" src="{{ url_for('static', filename='img/tracking_binder.png') }}" alt="{{binder.name}}"></a>

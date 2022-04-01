@@ -22,10 +22,10 @@
                     {% if 'user_id' not in session %}
                         <a href="/login" class="logout"><button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-color="dark"><p>Account</p></button></a>
                         {% else %}
-                        <a href="/search"><img id="search_ball" src="{{ url_for('static', filename='img/search_ball.gif') }}"></a>
-                        <p><a href="/profile" id="profile-link">{{session['name']}}</a></p>
-                        <a href="/logout" class="logout"><button type="submit" class="btn btn-danger btn-rounded" data-mdb-ripple-color="dark"><p>Log Out</p></button></a>
-                    {% endif %}
+                            <a href="/search"><img id="search_ball" src="{{ url_for('static', filename='img/search_ball.gif') }}"></a>
+                            <p><a href="/profile" id="profile-link">{{session['name']}}</a></p>
+                            <a href="/logout" class="logout"><button type="submit" class="btn btn-danger btn-rounded" data-mdb-ripple-color="dark"><p>Log Out</p></button></a>
+                        {% endif %}
                 </div>
             </div>
         </div>

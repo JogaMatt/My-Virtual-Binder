@@ -94,6 +94,7 @@ def account():
         return redirect('/login')
     session['user_id'] = user_in_db.id
     session['name'] = user_in_db.username
+    pprint(session['user_id'])
     return redirect("/")
 
 @app.route('/create_account', methods=['POST'])

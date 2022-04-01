@@ -2,6 +2,7 @@ from flask_app import app, Bcrypt
 from flask import render_template,redirect,request,session,flash
 from flask_app.models.binder import Binder
 from flask_app.models.card import Card
+
 from pprint import pprint
 
 @app.route('/submit_binder', methods=['POST'])
@@ -21,4 +22,12 @@ def show_binder(id):
     session['binder_id'] = id
 
     cards = Card.get_my_cards(data)
-    return render_template('mybinder.html', cards = cards)
+
+    binders = Binder.get_all_binders()
+
+    data = {
+        'id': session['user_id']
+    }
+
+
+    return render_template('mybinder.html', binders = binders, cards = cards)
