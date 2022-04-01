@@ -28,7 +28,9 @@
 }
 
 #logo{
-    width: 150px;
+    width: 245px;
+    margin-top: 15px;
+    margin-bottom: 30px;
 }
 
 #search_bar{

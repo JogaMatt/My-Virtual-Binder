@@ -14,7 +14,7 @@
     <div id="container">
         <div id="navbar">
             <div class="logo">
-                <a href="/"><img id="logo" src="{{ url_for('static', filename='img/pokemon_binder.png') }}"></a>
+                <a href="/"><img id="logo" src="{{ url_for('static', filename='img/virtual_binder_logo.png') }}"></a>
             </div>
             <div class="registration">
                 <div class="links">
@@ -23,7 +23,7 @@
                         {% else %}
                         <a href="/search"><img id="search_ball" src="{{ url_for('static', filename='img/search_ball.gif') }}"></a>
                         <p><a href="/profile" id="profile-link">{{session['name']}}</a></p>
-                        <a href="/logout" class="logout">Log Out</a>
+                        <a href="/logout" class="logout"><button type="submit" class="btn btn-danger btn-rounded" data-mdb-ripple-color="dark"><p>Log Out</p></button></a>
                     {% endif %}
                 </div>
             </div>
@@ -125,15 +125,15 @@
                     {% if users.id != session['user_id'] %}
                         <div class="card"  onmouseover="increaseSize(this)" onmouseleave="decreaseSize(this)">
                             <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                                <img src="{{data['data']['images']['large']}}" class="img-fluid"/>
+                                <img src="{{users.profile_icon}}" class="img-fluid"/>
                                 <a href="">
                                 <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                                 </a>
                             </div>
                             <div class="card-body">
                                 <p class="card-title"><strong>{{users.username}}</strong></p>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="/show_binder" class="btn btn-primary">Button</a>
+                                <p class="card-text">{{users.profile_bio}}</p>
+                                <a href="/profile/{{users.id}}" id="btn-outline-primary" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">See Profile</a>
                             </div>
                         </div>
                     {% endif %}

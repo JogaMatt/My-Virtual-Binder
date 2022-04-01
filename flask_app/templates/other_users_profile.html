@@ -35,30 +35,18 @@
         </div>
         <div id="body">
             <div class="login_box">
-                {% for user in users %}
-                    {% if session['user_id'] == user.id %}
-                        <img class="my_icon" src="{{user.profile_icon}}" alt="profile_icon">
-                    {% endif %}
-                {% endfor %}
-                <h2 class="username">{{session['name']}}</h2>
-                <a id="edit_link" href="/edit_profile/{{session['user_id']}}"><button type="submit" class="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark"><p>Edit Profile</p></button></a></a>
-                {% for user in users %}
-                    {% if session['user_id'] == user.id %}
-                        <div id="bio">
-                            <h5 class="about_me">About Me:</h5>
-                            <p>{{user.profile_bio}}</p>
-                        </div>
-                        
-                    {% endif %}
-                    
-                {% endfor %}
-                
+                <img class="my_icon" src="{{users.profile_icon}}" alt="profile_icon">
+                <h2 class="username">{{users.username}}</h2>
+                <div id="bio">
+                    <h5 class="about_me">About Me:</h5>
+                    <p>{{users.profile_bio}}</p>
+                </div>
             </div>
             <div id="profile-body">
                 <h1 id="title">Trade Binders</h1>
                 <div id="trade-body">
                     {% for binder in binders %}
-                        {% if session['user_id'] == binder.user_id and binder.trade == "Yes" %}
+                        {% if session['user_id'] != binder.user_id and binder.trade == "Yes" %}
                             <div id="parent-trade">
                                 <div class="trade">
                                     <a href="/show_binder/{{binder.id}}"><img id="body-binders" src="{{ url_for('static', filename='img/trade_binder.png') }}" alt=""></a>
@@ -72,7 +60,7 @@
                 <h1 id="title">Set Binders</h1>
                 <div id="set-body">
                     {% for binder in binders %}
-                        {% if session['user_id'] == binder.user_id and binder.trade == "No" %}
+                        {% if session['user_id'] != binder.user_id and binder.trade == "No" %}
                             <div id="parent-set">
                                 <div class="set">
                                     <a href="/show_binder/{{binder.id}}"><img id="body-binders" src="{{ url_for('static', filename='img/tracking_binder.png') }}" alt="{{binder.name}}"></a>

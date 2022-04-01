@@ -180,6 +180,16 @@ function grandTotal(){
         document.getElementById("resultGrandTotal").innerHTML = (sum).toFixed(2)
 }
 
+function percentTotal(){
+    var sum = 0
+    var percent = document.querySelectorAll(".bigTotal")
+
+    percent.forEach((element)=>{
+        sum += parseFloat(element.innerText)
+        console.log(element.innerText,sum)})
+        document.getElementById("resultExtraTotal").innerHTML = (sum * 1.2).toFixed(2)
+}
+
 function cardTotal(){
     var sum = 0
     var total = document.querySelectorAll(".cardTotal")
@@ -190,15 +200,7 @@ function cardTotal(){
         document.getElementById("cardTotal").innerHTML = sum + " card(s)"
 }
 
-function percentTotal(){
-    var sum = 0
-    var percent = document.querySelectorAll(".bigTotal")
 
-    percent.forEach((element)=>{
-        sum += parseFloat(element.innerText)
-        console.log(element.innerText,sum)})
-        document.getElementById("resultExtraTotal").innerHTML = (sum * 1.2).toFixed(2)
-}
 
 // -----COOKIE BOX-----
 var cookieDiv = document.querySelector("#alertBox")

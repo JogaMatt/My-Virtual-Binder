@@ -10,7 +10,7 @@
 }
 
 #navbar{
-    height: 100px;
+    height: 155px;
     display: flex; 
     justify-content: space-between;
     align-items: center;
@@ -26,7 +26,7 @@
 }
 
 #logo{
-    width: 200px;
+    width: 150px;
 }
 
 #search_bar{
@@ -71,13 +71,14 @@ a:active {
     margin-left: 0;
     font-size: 16pt;
 }
+
 .logout{
-    background-color: rgb(177, 50, 50);
-    width: 90px;
-    height: 35px;
-    border: 2px solid gray;
-    border-radius: 5px;
     margin-left: 15px;
+}
+
+button > p{
+    font-size: 10pt;
+    margin-bottom: 0;
 }
 
 #web_nav{
@@ -142,4 +143,18 @@ a:active {
 #creation_binder,
 #set_binder{
     width: 500px;
+}
+
+#binder-name{
+    height: 50px;
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+#create-button{
+    margin-left: 30px;
 }

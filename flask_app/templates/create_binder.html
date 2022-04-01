@@ -14,7 +14,7 @@
     <div id="container">
         <div id="navbar">
             <div class="logo">
-                <a href="/"><img id="logo" src="{{ url_for('static', filename='img/pokemon_binder.png') }}"></a>
+                <a href="/"><img id="logo" src="{{ url_for('static', filename='img/virtual_binder_logo.png') }}"></a>
             </div>
             <div class="registration">
                 <div class="links">
@@ -23,7 +23,7 @@
                         {% else %}
                         <a href="/search"><img id="search_ball" src="{{ url_for('static', filename='img/search_ball.gif') }}"></a>
                         <p><a href="/profile" id="profile-link">{{session['name']}}</a></p>
-                        <a href="/logout" class="logout">Log Out</a>
+                        <a href="/logout" class="logout"><button type="submit" class="btn btn-danger btn-rounded" data-mdb-ripple-color="dark"><p>Log Out</p></button></a>
                     {% endif %}
                 </div>
             </div>
@@ -96,13 +96,23 @@
             <div class="trade_binder">
                 <h1 class="title">Trade Binders</h1>
                 <p>Trade binders are the way to go when it comes down to displaying what you are willing to part with in order to complete your set. Allow other users to view your cards and take a peak at someone else's binders as well!</p>
-                <a href="/binder_creation"><img src="{{ url_for('static', filename='img/creation_binder.png') }}" id="creation_binder"></a>
+                <form action="/submit_binder" method="post">
+                    <input type="hidden" name="user_id" value="{{session['user_id']}}">
+                    <input type="hidden" name="trade" value="Yes">
+                    <input type="text" name="name" id="binder-name">
+                    <button type="submit" id="create-button" class="btn btn-success btn-rounded" data-mdb-ripple-color="dark">Create Binder</button>
+                </form>
             </div>
             <div class="vertical"></div>
             <div class="set_binder">
                 <h1 class="title">Set Binders</h1>
                 <p>Set binders are a good way of keeping track of how many cards you have in a respective set. If you fancy yourself a completionist, it might be a smart idea to create a set binder. Take the first step towards set completion!</p>
-                <a href="/binder_creation"><img src="{{ url_for('static', filename='img/set_binder.png') }}" id="set_binder"></a>
+                <form action="/submit_binder" method="post">
+                    <input type="hidden" name="user_id" value="{{session['user_id']}}">
+                    <input type="hidden" name="trade" value="No">
+                    <input type="text" name="name" id="binder-name">
+                    <button type="submit" id="create-button" class="btn btn-success btn-rounded" data-mdb-ripple-color="dark">Create Binder</button>
+                </form>
             </div>
         </div>
         <div class="binders">

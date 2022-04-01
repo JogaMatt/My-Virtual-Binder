@@ -9,7 +9,7 @@
 }
 
 #navbar{
-    height: 100px;
+    height: 155px;
     display: flex; 
     justify-content: space-between;
     align-items: center;
@@ -21,7 +21,7 @@
 }
 
 #logo{
-    width: 200px;
+    width: 150px;
 }
 
 #search_bar{
@@ -71,13 +71,14 @@ a:active {
     margin-left: 0;
     font-size: 16pt;
 }
+
 .logout{
-    background-color: rgb(177, 50, 50);
-    width: 90px;
-    height: 35px;
-    border: 2px solid gray;
-    border-radius: 5px;
     margin-left: 15px;
+}
+
+button > p{
+    font-size: 10pt;
+    margin-bottom: 0;
 }
 
 #web_nav{
@@ -182,7 +183,7 @@ input[type="checkbox"]:checked ~ .check:after
     height: 1500px;
 }
 
-.card{
+#card{
     width: 1024px;
     height: 100px;
     margin: auto;
@@ -195,32 +196,32 @@ input[type="checkbox"]:checked ~ .check:after
     box-shadow: 0px 0px 3px 0px rgb(90, 90, 90);
 }
 
-.type{
+#type{
     width: 200px;
     margin-left: 50px;
 }
 
-.quantity{
+#quantity{
     width: 200px;
 }
 
-.price{
+#price{
     width: 75px;
 }
 
-.submit{
+#submit{
     width: 125px;
     margin-bottom: 10px;
     cursor: pointer;
 }
 
-.total{
+#total{
     display: flex;
     width: 200px;
     align-items: center;
 }
 
-.submit > img{
+#submit > img{
     height: 65px;
 }
 
@@ -228,11 +229,11 @@ h1 > img{
     height: 106px;
 }
 
-.firstPokeballs{
+#firstPokeballs{
     margin-right: 72px;
 }
 
-.grandTotal{
+#grandTotal{
     width: 1024px;
     height: 100px;
     margin: auto;
@@ -245,16 +246,18 @@ h1 > img{
     box-shadow: 0px 0px 3px 0px rgb(90, 90, 90);
 }
 
-.grandQuantity{
+#grandQuantity{
     width: 200px;
 }
 
-.money{
+#money{
     height: 15px;
 }
 
-.cardTotal{
+#cardTotal{
     height: 0px;
+    font-size: large;
+    margin-bottom: 10px;
 }
 
 #extraMoney{
@@ -295,12 +298,12 @@ h1 > img{
     text-decoration: underline;
 }
 
-.btn{
+.button{
     width: 225px;
     height: 40px;
     color: black;
     background-color: rgb(90, 190, 255);
-    font-size: large;
+    font-size: 11pt;
     box-shadow: 4px 4px 4px black;
     margin: 30px 30px 0px 30px;
     cursor: pointer;
@@ -314,3 +317,29 @@ h1 > img{
 }
 
 /* -----END ALERT BOX----- */
+
+#original{
+    font-size: 1.17em;
+    margin-top: 15px;
+
+}
+
+#quantity > h3{
+    height: 0;
+    width: 0;
+    color: rgb(206, 220, 233);
+}
+
+#price > h3{
+    font-size: 1.17em;
+    margin-top: 15px;
+}
+
+#total > h3{
+    font-size: 1.17em;
+    margin-top: 10px;
+}
+
+#resultGrandTotal{
+    margin-right: 15px;
+}

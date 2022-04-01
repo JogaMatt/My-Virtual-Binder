@@ -41,7 +41,7 @@ def uniqueCard(id):
 
     users_with_cards = Card.get_one_with_users(data)
 
-    pprint(id)
+    # pprint(id)
     return render_template('showcard.html', data = card, users = users, users_with_cards = users_with_cards)
 
 @app.route('/save_card', methods=['POST'])

@@ -9,7 +9,7 @@
 }
 
 #navbar{
-    height: 100px;
+    height: 155px;
     display: flex; 
     justify-content: space-between;
     align-items: center;
@@ -21,7 +21,7 @@
 }
 
 #logo{
-    width: 200px;
+    width: 150px;
 }
 
 #search_bar{
@@ -70,13 +70,14 @@ a:active {
     margin-left: 0;
     font-size: 16pt;
 }
+
 .logout{
-    background-color: rgb(177, 50, 50);
-    width: 90px;
-    height: 35px;
-    border: 2px solid gray;
-    border-radius: 5px;
     margin-left: 15px;
+}
+
+button > p{
+    font-size: 10pt;
+    margin-bottom: 0;
 }
 
 #web_nav{
@@ -85,7 +86,7 @@ a:active {
     background-color: black;
     display: flex;
     justify-content: space-evenly;
-    /* margin-bottom: 30px; */
+    margin-bottom: 15px;
 }
 
 #web_nav > a{
@@ -153,4 +154,84 @@ a:active {
 #parent-trade,
 #parent-set{
     display: inline-block;
+}
+
+.trade,
+.set > h5{
+    text-align: center;
+    font-family: fantasy;
+}
+
+#body-binders{
+    width: 200px;
+}
+
+#horizontal-line{
+    border-top: 2px solid black;
+    width: 800px;
+    margin-bottom: 30px;
+    margin: auto;
+}
+
+#profile-body{
+    width: 820px;
+    height: 1250px;
+    margin-left: 45px;
+    border: 2px solid rgb(222, 222, 222);
+    border-radius: 3%;
+    box-shadow: 4px 4px 4px rgb(68, 68, 68);
+}
+
+#trade-body,
+#set-body{
+    width: 815px;
+    height: 535px;
+    margin-right: 30px;
+}
+
+#body{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#title{
+    font-family: fantasy;
+    text-align: center;
+    text-decoration: underline;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.login_box{
+    width: 500px;
+    height: 590px;
+    background-color: white;
+    border: 2px solid rgb(222, 222, 222);
+    border-radius: 3%;
+    box-shadow: 4px 4px 4px rgb(68, 68, 68);
+}
+
+.my_icon{
+    height: 150px;
+    width: 150px;
+    margin: 45px 0 30px 175px;
+}
+
+.username{
+    font-family: fantasy;
+    text-align: center;
+}
+
+#edit_link{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.about_me{
+    font-family: fantasy;
+}
+
+#bio{
+    margin-left: 30px;
 }

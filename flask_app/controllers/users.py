@@ -2,6 +2,7 @@ from flask_app import app, Bcrypt
 from flask import render_template,redirect,request,session,flash
 from flask_app.models.user import User
 from flask_app.models.binder import Binder
+from pprint import pprint
 
 
 bcrypt = Bcrypt(app)
@@ -15,9 +16,57 @@ def profile():
     if 'user_id' not in session:
         return redirect('/login')
 
+    users = User.get_all_users()
+
     binders = Binder.get_all_binders()
 
-    return render_template('profile.html', binders = binders)
+    return render_template('profile.html', users = users, binders = binders)
+
+@app.route('/profile/<id>')
+def other_user_profiles(id):
+    if 'user_id' not in session:
+        return redirect('/login')
+
+    data = {
+        'id': id
+    }
+
+    users = User.get_one(data)
+    
+    binders = Binder.get_all_binders()
+
+
+    return render_template('other_users_profile.html', users = users, binders = binders)
+
+@app.route('/edit_profile/<id>')
+def edit_profile(id):
+    if 'user_id' not in session:
+        return redirect('/login')
+
+    data = {
+        'id': id
+    }
+
+    users = User.get_one_user(data)
+    return render_template('edit_profile.html', users = users)
+
+@app.route('/save_update', methods=['POST'])
+def save_update():
+    
+    data = {
+        'username': request.form['username'],
+        'profile_icon': request.form['profile_icon'],
+        'profile_bio': request.form['profile_bio'],
+        'email': request.form['email'],
+        'id': session['user_id']
+    }
+
+    session['name'] = request.form['username']
+
+    User.update(data)
+
+    return redirect('profile')
+
 
 @app.route('/login')
 def login():
@@ -57,6 +106,7 @@ def create_account():
         "first_name": request.form['first_name'],
         "last_name": request.form['last_name'],
         "username": request.form['username'],
+        "profile_icon": request.form['profile_icon'],
         "email": request.form['email'],
         "password" : pw_hash
     }

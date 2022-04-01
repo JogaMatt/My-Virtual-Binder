@@ -15,17 +15,16 @@
     <div id="container">
         <div id="navbar">
             <div class="logo">
-                <a href="/"><img id="logo" src="{{ url_for('static', filename='img/pokemon_binder.png') }}"></a>
+                <a href="/"><img id="logo" src="{{ url_for('static', filename='img/virtual_binder_logo.png') }}"></a>
             </div>
-            <!-- <input type="text" name="" id="search_bar" placeholder="  Search..."> -->
             <div class="registration">
                 <div class="links">
                     {% if 'user_id' not in session %}
-                        <a href="/profile" class="account">Account</a>
+                        <a href="/login" class="logout"><button type="submit" class="btn btn-primary btn-rounded" data-mdb-ripple-color="dark"><p>Account</p></button></a>
                         {% else %}
                         <a href="/search"><img id="search_ball" src="{{ url_for('static', filename='img/search_ball.gif') }}"></a>
                         <p><a href="/profile" id="profile-link">{{session['name']}}</a></p>
-                        <a href="/logout" class="logout">Log Out</a>
+                        <a href="/logout" class="logout"><button type="submit" class="btn btn-danger btn-rounded" data-mdb-ripple-color="dark"><p>Log Out</p></button></a>
                     {% endif %}
                 </div>
             </div>

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mdb.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/calculator.css') }}">
     <title>Card Calculator</title>
 </head>
@@ -13,7 +13,7 @@
     <div id="container">
         <div id="navbar">
             <div class="logo">
-                <a href="/"><img id="logo" src="{{ url_for('static', filename='img/pokemon_binder.png') }}"></a>
+                <a href="/"><img id="logo" src="{{ url_for('static', filename='img/virtual_binder_logo.png') }}"></a>
             </div>
             <div class="registration">
                 <div class="links">
@@ -22,7 +22,7 @@
                         {% else %}
                         <a href="/search"><img id="search_ball" src="{{ url_for('static', filename='img/search_ball.gif') }}"></a>
                         <p><a href="/profile" id="profile-link">{{session['name']}}</a></p>
-                        <a href="/logout" class="logout">Log Out</a>
+                        <a href="/logout" class="logout"><button type="submit" class="btn btn-danger btn-rounded" data-mdb-ripple-color="dark"><p>Log Out</p></button></a>
                     {% endif %}
                 </div>
             </div>
@@ -37,216 +37,216 @@
             <img src="{{ url_for('static', filename='img/gardevoir-2.gif') }}" alt="gardevoir-2" class="alert">
             <h1>Please DO NOT use commas when entering your card quantity. Doing so will cause this page to not function properly</h1>
             <img src="{{ url_for('static', filename='img/gardevoir-3.gif') }}" alt="gardevoir-3" class="alert">
-            <button onclick="removeCookie()" class="btn"><strong>Fine! Go away!</strong></button>
+            <button onclick="removeCookie()" class="button"><strong>Fine! Go away!</strong></button>
         </div>
 
         <div id="mainBody">
-            <div class="card">
-                <div class="type">
-                    <h3><strong>Common/Uncommon</strong></h3>
+            <div id="card">
+                <div id="type">
+                    <h3 id="original"><strong>Common/Uncommon</strong></h3>
                 </div>
-                <div class="quantity">
+                <div id="quantity">
                     <h3 id="common" class="cardTotal">0</h3>
                     <input type="text" placeholder="Enter card amount..." oninput="setComQuantity(this)">
                 </div>
-                <div class="price">
+                <div id="price">
                     <h3 id="cardPrice">$0.025</h3>
                 </div>
-                <div class="submit">
+                <div id="submit">
                     <img src="{{ url_for('static', filename='img/pokeball.png') }}" alt="submit button" onclick="calcCom()">
                 </div>
-                <div class="total">
-                    <img src="{{ url_for('static', filename='img/dollar.png') }}" alt="$" class="money"><h3 id="resultCom" class="bigTotal">0.00</h3>
+                <div id="total">
+                    <img src="{{ url_for('static', filename='img/dollar.png') }}" alt="$" id="money"><h3 id="resultCom" class="bigTotal">0.00</h3>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="type">
-                    <h3><strong>Rares</strong></h3>
+            <div id="card">
+                <div id="type">
+                    <h3 id="original"><strong>Rares</strong></h3>
                 </div>
-                <div class="quantity">
+                <div id="quantity">
                     <h3 id="rare" class="cardTotal">0</h3>
                     <input type="text" placeholder="Enter card amount..." oninput="setRareQuantity(this)">
                 </div>
-                <div class="price">
+                <div id="price">
                     <h3>$0.08</h3>
                 </div>
-                <div class="submit">
+                <div id="submit">
                     <img src="{{ url_for('static', filename='img/pokeball.png') }}" alt="submit button" onclick="calcRare()">
                 </div>
-                <div class="total">
-                    <img src="{{ url_for('static', filename='img/dollar.png') }}" alt="$" class="money"><h3 id="resultRare" class="bigTotal">0.00</h3>
+                <div id="total">
+                    <img src="{{ url_for('static', filename='img/dollar.png') }}" alt="$" id="money"><h3 id="resultRare" class="bigTotal">0.00</h3>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="type">
-                    <h3><strong>Holo/Reverse-Holo/Reverse-Rare</strong></h3>
+            <div id="card">
+                <div id="type">
+                    <h3 id="original"><strong>Holo/Reverse-Holo/Reverse-Rare</strong></h3>
                 </div>
-                <div class="quantity">
+                <div id="quantity">
                     <h3 id="holo" class="cardTotal">0</h3>
                     <input type="text" placeholder="Enter card amount..." oninput="setHoloQuantity(this)">
                 </div>
-                <div class="price">
+                <div id="price">
                     <h3>$0.12</h3>
                 </div>
-                <div class="submit">
+                <div id="submit">
                     <img src="{{ url_for('static', filename='img/pokeball.png') }}" alt="submit button" onclick="calcHolo()">
                 </div>
-                <div class="total">
-                    <img src="{{ url_for('static', filename='img/dollar.png') }}" alt="$" class="money"><h3 id="resultHolo" class="bigTotal">0.00</h3>
+                <div id="total">
+                    <img src="{{ url_for('static', filename='img/dollar.png') }}" alt="$" id="money"><h3 id="resultHolo" class="bigTotal">0.00</h3>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="type">
-                    <h3><strong>Energy</strong></h3>
+            <div id="card">
+                <div id="type">
+                    <h3 id="original"><strong>Energy</strong></h3>
                 </div>
-                <div class="quantity">
+                <div id="quantity">
                     <h3 id="energy" class="cardTotal">0</h3>
                     <input type="text" placeholder="Enter card amount..." oninput="setEnergyQuantity(this)">
                 </div>
-                <div class="price">
+                <div id="price">
                     <h3>$0.01</h3>
                 </div>
-                <div class="submit">
+                <div id="submit">
                     <img src="{{ url_for('static', filename='img/pokeball.png') }}" alt="submit button" onclick="calcEnergy()">
                 </div>
-                <div class="total">
-                    <img src="{{ url_for('static', filename='img/dollar.png') }}" alt="$" class="money"><h3 id="resultEnergy" class="bigTotal">0.00</h3>
+                <div id="total">
+                    <img src="{{ url_for('static', filename='img/dollar.png') }}" alt="$" id="money"><h3 id="resultEnergy" class="bigTotal">0.00</h3>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="type">
-                    <h3><strong>GX</strong></h3>
+            <div id="card">
+                <div id="type">
+                    <h3 id="original"><strong>GX</strong></h3>
                 </div>
-                <div class="quantity">
+                <div id="quantity">
                     <h3 id="gx" class="cardTotal">0</h3>
                     <input type="text" placeholder="Enter card amount..." oninput="setGxQuantity(this)">
                 </div>
-                <div class="price">
+                <div id="price">
                     <h3>$1.75</h3>
                 </div>
-                <div class="submit">
+                <div id="submit">
                     <img src="{{ url_for('static', filename='img/pokeball.png') }}" alt="submit button" onclick="calcGx()">
                 </div>
-                <div class="total">
-                    <img src="{{ url_for('static', filename='img/dollar.png') }}" alt="$" class="money"><h3 id="resultGx" class="bigTotal">0.00</h3>
+                <div id="total">
+                    <img src="{{ url_for('static', filename='img/dollar.png') }}" alt="$" id="money"><h3 id="resultGx" class="bigTotal">0.00</h3>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="type">
-                    <h3><strong>V</strong></h3>
+            <div id="card">
+                <div id="type">
+                    <h3 id="original"><strong>V</strong></h3>
                 </div>
-                <div class="quantity">
+                <div id="quantity">
                     <h3 id="v" class="cardTotal">0</h3>
                     <input type="text" placeholder="Enter card amount..." oninput="setVQuantity(this)">
                 </div>
-                <div class="price">
+                <div id="price">
                     <h3>$1.00</h3>
                 </div>
-                <div class="submit">
+                <div id="submit">
                     <img src="{{ url_for('static', filename='img/pokeball.png') }}" alt="submit button" onclick="calcV()">
                 </div>
-                <div class="total">
-                    <img src="{{ url_for('static', filename='img/dollar.png') }}" alt="$" class="money"><h3 id="resultV" class="bigTotal">0.00</h3>
+                <div id="total">
+                    <img src="{{ url_for('static', filename='img/dollar.png') }}" alt="$" id="money"><h3 id="resultV" class="bigTotal">0.00</h3>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="type">
-                    <h3><strong>VMAX</strong></h3>
+            <div id="card">
+                <div id="type">
+                    <h3 id="original"><strong>VMAX</strong></h3>
                 </div>
-                <div class="quantity">
+                <div id="quantity">
                     <h3 id="vmax" class="cardTotal">0</h3>
                     <input type="text" placeholder="Enter card amount..." oninput="setVmaxQuantity(this)">
                 </div>
-                <div class="price">
+                <div id="price">
                     <h3>$1.75</h3>
                 </div>
-                <div class="submit">
+                <div id="submit">
                     <img src="{{ url_for('static', filename='img/pokeball.png') }}" alt="submit button" onclick="calcVmax()">
                 </div>
-                <div class="total">
-                    <img src="{{ url_for('static', filename='img/dollar.png') }}" alt="$" class="money"><h3 id="resultVmax" class="bigTotal">0.00</h3>
+                <div id="total">
+                    <img src="{{ url_for('static', filename='img/dollar.png') }}" alt="$" id="money"><h3 id="resultVmax" class="bigTotal">0.00</h3>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="type">
-                    <h3><strong>Full Art Trainer</strong></h3>
+            <div id="card">
+                <div id="type">
+                    <h3 id="original"><strong>Full Art Trainer</strong></h3>
                 </div>
-                <div class="quantity">
+                <div id="quantity">
                     <h3 id="trainer" class="cardTotal">0</h3>
                     <input type="text" placeholder="Enter card amount..." oninput="setTrainerQuantity(this)">
                 </div>
-                <div class="price">
+                <div id="price">
                     <h3>$1.00</h3>
                 </div>
-                <div class="submit">
+                <div id="submit">
                     <img src="{{ url_for('static', filename='img/pokeball.png') }}" alt="submit button" onclick="calcTrainer()">
                 </div>
-                <div class="total">
-                    <img src="{{ url_for('static', filename='img/dollar.png') }}" alt="$" class="money"><h3 id="resultTrainer" class="bigTotal">0.00</h3>
+                <div id="total">
+                    <img src="{{ url_for('static', filename='img/dollar.png') }}" alt="$" id="money"><h3 id="resultTrainer" class="bigTotal">0.00</h3>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="type">
-                    <h3><strong>Rainbow Rare</strong></h3>
+            <div id="card">
+                <div id="type">
+                    <h3 id="original"><strong>Rainbow Rare</strong></h3>
                 </div>
-                <div class="quantity">
+                <div id="quantity">
                     <h3 id="rainbow" class="cardTotal">0</h3>
                     <input type="text" placeholder="Enter card amount..." oninput="setRainbowQuantity(this)">
                 </div>
-                <div class="price">
+                <div id="price">
                     <h3>$2.50</h3>
                 </div>
-                <div class="submit">
+                <div id="submit">
                     <img src="{{ url_for('static', filename='img/pokeball.png') }}" alt="submit button" onclick="calcRainbow()">
                 </div>
-                <div class="total">
-                    <img src="{{ url_for('static', filename='img/dollar.png') }}" alt="$" class="money"><h3 id="resultRainbow" class="bigTotal">0.00</h3>
+                <div id="total">
+                    <img src="{{ url_for('static', filename='img/dollar.png') }}" alt="$" id="money"><h3 id="resultRainbow" class="bigTotal">0.00</h3>
                 </div>
             </div>
 
-            <div class="card">
-                <div class="type">
-                    <h3><strong>Gold Rare</strong></h3>
+            <div id="card">
+                <div id="type">
+                    <h3 id="original"><strong>Gold Rare</strong></h3>
                 </div>
-                <div class="quantity">
+                <div id="quantity">
                     <h3 id="gold" class="cardTotal">0</h3>
                     <input type="text" placeholder="Enter card amount..." oninput="setGoldQuantity(this)">
                 </div>
-                <div class="price">
+                <div id="price">
                     <h3>$1.50</h3>
                 </div>
-                <div class="submit">
+                <div id="submit">
                     <img src="{{ url_for('static', filename='img/pokeball.png') }}" alt="submit button" onclick="calcGold()">
                 </div>
-                <div class="total">
-                    <img src="{{ url_for('static', filename='img/dollar.png') }}" alt="$" class="money"><h3 id="resultGold" class="bigTotal">0.00</h3>
+                <div id="total">
+                    <img src="{{ url_for('static', filename='img/dollar.png') }}" alt="$" id="money"><h3 id="resultGold" class="bigTotal">0.00</h3>
                 </div>
             </div>
 
-            <div class="grandTotal">
-                <div class="type">
-                    <h3><strong><u>GRAND TOTALS</u></strong></h3>
+            <div id="grandTotal">
+                <div id="type">
+                    <h3 id="original"><strong><u>GRAND TOTALS</u></strong></h3>
                 </div>
-                <div class="grandQuantity">
+                <div id="grandQuantity">
                     <h3 id="cardTotal">0 card(s)</h3>
                 </div>
-                <div class="price">
+                <div id="price">
 
                 </div>
-                <div class="submit">
+                <div id="submit">
                     <img src="{{ url_for('static', filename='img/pokeball.png') }}" alt="submit button" onclick="grandTotal(), cardTotal(), percentTotal()">
                 </div>
-                <div class="total">
-                    <img src="{{ url_for('static', filename='img/dollar.png') }}" alt="$" class="money"><h3 id="resultGrandTotal">0.00</h3>
-                    <img src="{{ url_for('static', filename='img/redMoney.png') }}" alt="$" class="money" id="extraMoney"><h3 id="resultExtraTotal">0.00</h3>
+                <div id="total">
+                    <img src="{{ url_for('static', filename='img/dollar.png') }}" alt="$" id="money"><h3 id="resultGrandTotal">0.00</h3>
+                    <img src="{{ url_for('static', filename='img/redMoney.png') }}" alt="$" id="money" id="extraMoney"><h3 id="resultExtraTotal">0.00</h3>
                 </div>
             </div>
 

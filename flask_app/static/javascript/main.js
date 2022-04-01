@@ -14,7 +14,7 @@ function decreaseSize(element){
     element.classList.remove("bigImg")
 }
 
-$("#submit-button").on("click", function (event){
+$("#search-button").on("click", function (event){
     $("#card-container").empty();
     event.preventDefault();
     var pokemon = $("#search_bar")
