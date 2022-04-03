@@ -31,3 +31,23 @@ def show_binder(id):
 
 
     return render_template('mybinder.html', binders = binders, cards = cards)
+
+@app.route('/other_users_binder/<id>')
+def other_users_binder(id):
+
+    data = {
+        'binder_id': id
+    }
+
+    session['binder_id'] = id
+
+    cards = Card.get_my_cards(data)
+
+    binders = Binder.get_all_binders()
+
+    data = {
+        'id': session['user_id']
+    }
+
+
+    return render_template('other_users_binder.html', binders = binders, cards = cards)

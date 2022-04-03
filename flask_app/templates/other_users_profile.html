@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/mdb.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/profile.css') }}">
-    <title>My Virtual Binder</title>
+    <title>{{users.username}}'s Profile</title>
 </head>
 <body>
     <div id="container">
@@ -60,7 +60,7 @@
                         {% if session['user_id'] != binder.user_id and users.id == binder.user_id and binder.trade == "Yes" %}
                             <div id="parent-trade">
                                 <div class="trade">
-                                    <a href="/show_binder/{{binder.id}}"><img id="body-binders" src="{{ url_for('static', filename='img/trade_binder.png') }}" alt=""></a>
+                                    <a href="/other_users_binder/{{binder.id}}"><img id="body-binders" src="{{ url_for('static', filename='img/trade_binder.png') }}" alt=""></a>
                                     <h5>{{binder.name}}</h5>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
                         {% if session['user_id'] != binder.user_id and users.id == binder.user_id and binder.trade == "No" %}
                             <div id="parent-set">
                                 <div class="set">
-                                    <a href="/show_binder/{{binder.id}}"><img id="body-binders" src="{{ url_for('static', filename='img/tracking_binder.png') }}" alt="{{binder.name}}"></a>
+                                    <a href="/other_users_binder/{{binder.id}}"><img id="body-binders" src="{{ url_for('static', filename='img/tracking_binder.png') }}" alt="{{binder.name}}"></a>
                                     <h5>{{binder.name}}</h5>
                                 </div>
                             </div>
