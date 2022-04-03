@@ -3,6 +3,8 @@ from flask_app import flash, re
 from pprint import pprint
 from flask_app.models.binder import Binder
 from flask_app.models.message import Message
+from flask_app.models.friend import Friend
+
 
 
 DATABASE = 'my_v_binder'
@@ -60,6 +62,27 @@ class User:
                 'updated_at': result['binders.updated_at']
             }
             user.binders.append(Binder(binder_data))
+        # pprint(user.binders)
+        return user
+
+    @classmethod
+    def get_one_friends(cls,data):
+        query  = "SELECT * FROM users LEFT JOIN friends ON users.id = friends.user_id WHERE users.id = %(id)s";
+        results = connectToMySQL(DATABASE).query_db(query,data)
+        # pprint(results)
+        user = cls(results[0])
+        for result in results:
+            # pprint(result)
+            friend_data = {
+                'id': result['friends.id'],
+                'request_approval': result['request_approval'],
+                'request_sender_name': result['request_sender_name'],
+                'request_sender_id': result['request_sender_id'],
+                'request_receiver_name': result['request_receiver_name'],
+                'request_receiver_id': result['request_receiver_id'],
+                'user_id': result['user_id']
+            }
+            user.friends.append(Friend(friend_data))
         # pprint(user.binders)
         return user
 

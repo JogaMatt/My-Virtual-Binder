@@ -36,7 +36,26 @@
         <div id="body">
             <div class="login_box">
                 <img class="my_icon" src="{{users.profile_icon}}" alt="profile_icon">
-                <h2 class="username">{{users.username}}</h2>
+                <div id="user_information"></h2>
+                    <div class="username">
+                        <h2 class="username">{{users.username}} 
+                    </div>
+                    
+                        <div class="send_request">
+                            <form id="request_form" action="/send_request" method="post">
+                                <input type="hidden" name="request_sender_id" value="{{session['user_id']}}">
+                                <input type="hidden" name="request_sender_name" value="{{session['name']}}">
+                                <input type="hidden" name="request_receiver_id" value="{{users.id}}">
+                                <input type="hidden" name="request_receiver_name" value="{{users.username}}">
+                                <input type="hidden" name="user_id" value="{{session['user_id']}}">
+                                <input type="hidden" name="request_approval" value="pending">
+                                <button type="submit" class="request-btn"><img class="friend_request" src="{{ url_for('static', filename='img/friend_request.png') }}" alt="request"></button>
+                            </form>
+                        </div>
+                    
+                
+                </div>
+                
                 <div id="bio">
                     <h5 class="about_me">About Me:</h5>
                     <p>{{users.profile_bio}}</p>
@@ -52,6 +71,19 @@
                         <button type="submit" class="btn btn-success btn-rounded" data-mdb-ripple-color="dark"><p>Send</p></button>
                     </form>
                 </div>
+                <h5>{{users.username}}'s Friends:</h5>
+                {% for friend in friends %}
+                    {% if friend.request_receiver_name == users.username and friend.request_approval == 'accepted' %}
+                        <a id="friends_profile" href="/profile/{{friend.request_sender_id}}">{{friend.request_sender_name}}</a>
+                    {% endif %}
+                    {% if friend.request_sender_name == users.username and friend.request_approval == 'accepted' %}
+                        <a id="friends_profile" href="/profile/{{friend.request_receiver_id}}">{{friend.request_receiver_name}}</a>
+                    {% endif %}
+                        <div id="other_users_friends">
+
+                        </div>
+                {% endfor %}
+                
             </div>
             <div id="profile-body">
                 <h1 id="title">Trade Binders</h1>

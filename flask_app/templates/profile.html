@@ -62,7 +62,44 @@
                             </div>
                         </div>
                     {% endif %}
-                    
+                {% endfor %}
+                <h5>Friend Requests:</h5>
+                {% for friend in friends %}
+                    {% if session['user_id'] == friend.request_receiver_id and friend.request_approval == 'pending' %}
+                        <div id="requests">
+                            <div class="sender_name">
+                                {{friend.request_sender_name}} wants to be your friend!
+                            </div>
+                            <div class="response">
+                                <form action="/respond_request" method="post">
+                                    <input type="hidden" name="request_approval" value="accepted">
+                                    <input type="hidden" name="id" value="{{friend.id}}">
+                                    <button id="response-btn" type="submit" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark">Accept</button>
+                                </form>
+                                <div class="delete_request">
+                                    <a href="/delete_request/{{friend.id}}"><button id="delete-btn" type="button" class="btn btn-outline-danger btn-rounded" data-mdb-ripple-color="dark">Delete</button></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endif %}
+                {% endfor %}
+                <h5>My Friends:</h5>
+                {% for friend in friends %}
+                    {% if friend.request_approval == 'accepted' and session['user_id'] == friend.request_receiver_id %}
+                    <div id="friend">
+                        <a id="friends_profile" href="/profile/{{friend.request_sender_id}}">{{friend.request_sender_name}}</a>
+                        <div class="delete_request">
+                            <a href="/delete_request/{{friend.id}}"><button id="delete-btn" type="button" class="btn btn-outline-danger btn-rounded" data-mdb-ripple-color="dark">unfriend</button></a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if friend.request_approval == 'accepted' and session['user_id'] == friend.request_sender_id %}
+                        <a id="friends_profile" href="/profile/{{friend.request_receiver_id}}">{{friend.request_receiver_name}}</a>
+                        <div class="delete_request">
+                            <a href="/delete_request/{{friend.id}}"><button id="delete-btn" type="button" class="btn btn-outline-danger btn-rounded" data-mdb-ripple-color="dark">unfriend</button></a>
+                        </div>
+                    {% endif %}
                 {% endfor %}
             </div>
             <div id="profile-body">

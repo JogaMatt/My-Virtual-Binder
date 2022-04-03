@@ -3,6 +3,8 @@ from flask import render_template,redirect,request,session,flash
 from flask_app.models.user import User
 from flask_app.models.binder import Binder
 from flask_app.models.message import Message
+from flask_app.models.friend import Friend
+
 
 from pprint import pprint
 
@@ -24,7 +26,10 @@ def profile():
 
     messages = Message.get_all_messages()
 
-    return render_template('profile.html', messages = messages, users = users, binders = binders)
+    friends = Friend.get_all_friends()
+
+
+    return render_template('profile.html', friends = friends, messages = messages, users = users, binders = binders)
 
 @app.route('/profile/<id>')
 def other_user_profiles(id):
@@ -35,12 +40,16 @@ def other_user_profiles(id):
         'id': id
     }
 
+    if session['user_id'] == data:
+        return redirect('/profile')
+
     users = User.get_one(data)
     
     binders = Binder.get_all_binders()
 
+    friends = Friend.get_all_friends()
 
-    return render_template('other_users_profile.html', users = users, binders = binders)
+    return render_template('other_users_profile.html', friends = friends, users = users, binders = binders)
 
 @app.route('/edit_profile/<id>')
 def edit_profile(id):

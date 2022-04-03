@@ -252,3 +252,42 @@ button > p{
     color: black;
     text-decoration: underline;
 }
+
+.send_request{
+    margin-left: 15px;
+}
+
+.request-btn{
+    width: 45px;
+    margin-top: 4px;
+}
+
+.friend_request{
+    width: 30px;
+}
+
+#user_information{
+    display: flex;
+    justify-content: center;
+}
+
+#request_form{
+    cursor: pointer;
+}
+
+#requests{
+    display: flex;
+}
+
+.response{
+    display: flex;
+}
+
+#friend{
+    display: flex;
+}
+
+#friends_profile{
+    color: black;
+    text-decoration: underline;
+}
