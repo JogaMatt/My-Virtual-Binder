@@ -2,6 +2,8 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import flash, re
 from pprint import pprint
 from flask_app.models.binder import Binder
+from flask_app.models.message import Message
+
 
 DATABASE = 'my_v_binder'
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
@@ -19,6 +21,7 @@ class User:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.binders = []
+        self.messages = []
 
     @classmethod
     def save(cls, data:dict ) -> int:
@@ -58,6 +61,27 @@ class User:
             }
             user.binders.append(Binder(binder_data))
         # pprint(user.binders)
+        return user
+
+    @classmethod
+    def get_one_messages(cls,data):
+        query  = "SELECT * FROM users LEFT JOIN messages ON users.id = messages.user_id WHERE users.id = %(id)s";
+        results = connectToMySQL(DATABASE).query_db(query,data)
+        # pprint(results)
+        user = cls(results[0])
+        for result in results:
+            # pprint(result)
+            message_data = {
+                'id': result['messages.id'],
+                'context': result['context'], 
+                'sender_id': result['sender_id'],
+                'receiver_id': result['receiver_id'],
+                'user_id': result['user_id'],
+                'created_at': result['binders.created_at'],
+                'updated_at': result['binders.updated_at']
+            }
+            user.messages.append(Message(message_data))
+        pprint(user.messages)
         return user
 
     @classmethod

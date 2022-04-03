@@ -48,11 +48,22 @@
                             <h5 class="about_me">About Me:</h5>
                             <p>{{user.profile_bio}}</p>
                         </div>
-                        
+                    {% endif %}
+                {% endfor %}
+                <h5>New Messages:</h5>
+                {% for message in messages %}
+                    {% if session['user_id'] == message.receiver_id%}
+                        <div id="my_messages">
+                            <div class="message_info">
+                                <p>{{message.message_info}} <strong>From:</strong> <a id="user-link" href="/profile/{{message.sender_id}}"><strong>{{message.sender_name}}</strong></a></p>
+                            </div>
+                            <div class="delete_message">
+                                <a href="/delete_message/{{message.id}}"><button id="delete-btn" type="button" class="btn btn-outline-danger btn-rounded" data-mdb-ripple-color="dark">Delete</button></a>
+                            </div>
+                        </div>
                     {% endif %}
                     
                 {% endfor %}
-                
             </div>
             <div id="profile-body">
                 <h1 id="title">Trade Binders</h1>

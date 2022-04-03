@@ -2,6 +2,8 @@ from flask_app import app, Bcrypt
 from flask import render_template,redirect,request,session,flash
 from flask_app.models.user import User
 from flask_app.models.binder import Binder
+from flask_app.models.message import Message
+
 from pprint import pprint
 
 
@@ -20,7 +22,9 @@ def profile():
 
     binders = Binder.get_all_binders()
 
-    return render_template('profile.html', users = users, binders = binders)
+    messages = Message.get_all_messages()
+
+    return render_template('profile.html', messages = messages, users = users, binders = binders)
 
 @app.route('/profile/<id>')
 def other_user_profiles(id):

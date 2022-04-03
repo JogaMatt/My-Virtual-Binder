@@ -204,7 +204,7 @@ button > p{
 
 .login_box{
     width: 500px;
-    height: 590px;
+    /* height: 590px; */
     background-color: white;
     border: 2px solid rgb(222, 222, 222);
     border-radius: 3%;
@@ -234,4 +234,21 @@ button > p{
 
 #bio{
     margin-left: 30px;
+}
+
+#my_messages{
+    display: flex;
+    align-content: center;
+}
+
+.btn-outline-danger{
+    width: 100px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 1px;
+}
+
+#user-link{
+    color: black;
+    text-decoration: underline;
 }

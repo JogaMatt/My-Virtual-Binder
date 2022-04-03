@@ -41,6 +41,17 @@
                     <h5 class="about_me">About Me:</h5>
                     <p>{{users.profile_bio}}</p>
                 </div>
+                <div id="message">
+                    <h5 class="my_messages">Message Me:</h5>
+                    <form action="/send_message" method="post">
+                        <input type="hidden" name="sender_id" id="" value="{{session['user_id']}}">
+                        <input type="hidden" name="sender_name" id="" value="{{session['name']}}">
+                        <input type="hidden" name="receiver_id" id="" value="{{users.id}}">
+                        <input type="hidden" name="user_id" id="" value="{{users.id}}">
+                        <input type="text" name="message_info">
+                        <button type="submit" class="btn btn-success btn-rounded" data-mdb-ripple-color="dark"><p>Send</p></button>
+                    </form>
+                </div>
             </div>
             <div id="profile-body">
                 <h1 id="title">Trade Binders</h1>

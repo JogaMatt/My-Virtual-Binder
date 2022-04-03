@@ -1,5 +1,5 @@
 from flask_app import app
-from flask_app.controllers import users, cards, binders
+from flask_app.controllers import users, cards, binders, messages
 
 
 if __name__ == "__main__":
