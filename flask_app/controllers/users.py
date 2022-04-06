@@ -40,7 +40,9 @@ def other_user_profiles(id):
         'id': id
     }
 
-    if session['user_id'] == data:
+    # pprint(int(data['id']))
+    # pprint(session['user_id'])
+    if session['user_id'] == int(data['id']):
         return redirect('/profile')
 
     users = User.get_one(data)

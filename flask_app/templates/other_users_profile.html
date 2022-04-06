@@ -40,20 +40,17 @@
                     <div class="username">
                         <h2 class="username">{{users.username}} 
                     </div>
-                    
-                        <div class="send_request">
-                            <form id="request_form" action="/send_request" method="post">
-                                <input type="hidden" name="request_sender_id" value="{{session['user_id']}}">
-                                <input type="hidden" name="request_sender_name" value="{{session['name']}}">
-                                <input type="hidden" name="request_receiver_id" value="{{users.id}}">
-                                <input type="hidden" name="request_receiver_name" value="{{users.username}}">
-                                <input type="hidden" name="user_id" value="{{session['user_id']}}">
-                                <input type="hidden" name="request_approval" value="pending">
-                                <button type="submit" class="request-btn"><img class="friend_request" src="{{ url_for('static', filename='img/friend_request.png') }}" alt="request"></button>
-                            </form>
-                        </div>
-                    
-                
+                    <div class="send_request">
+                        <form id="request_form" action="/send_request" method="post">
+                            <input type="hidden" name="request_sender_id" value="{{session['user_id']}}">
+                            <input type="hidden" name="request_sender_name" value="{{session['name']}}">
+                            <input type="hidden" name="request_receiver_id" value="{{users.id}}">
+                            <input type="hidden" name="request_receiver_name" value="{{users.username}}">
+                            <input type="hidden" name="user_id" value="{{session['user_id']}}">
+                            <input type="hidden" name="request_approval" value="pending">
+                            <button type="submit" class="request-btn"><img class="friend_request" src="{{ url_for('static', filename='img/friend_request.png') }}" alt="request"></button>
+                        </form>
+                    </div>
                 </div>
                 
                 <div id="bio">
