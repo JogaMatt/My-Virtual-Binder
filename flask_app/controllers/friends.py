@@ -8,9 +8,9 @@ from pprint import pprint
 @app.route('/send_request', methods=['POST'])
 def send_request():
     pprint(request.form)
-
+    id = request.form['request_receiver_id']
     Friend.save(request.form)
-    return redirect('/')
+    return redirect(f'/profile/{id}')
 
 @app.route('/respond_request', methods=['POST'])
 def respond_request():
